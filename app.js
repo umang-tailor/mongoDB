@@ -21,10 +21,11 @@ mongoose.connect(DB_URL).then(()=>{
 
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, function () {
   console.log(`server is start ${PORT}`);
 });
 
 
 
+module.exports=app

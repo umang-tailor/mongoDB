@@ -149,6 +149,7 @@ const getEventList = async (req, res) => {
     try {
       let updatedUserData = await user_events.findOne({
         
+        
           user_id: req.userData.id,
         
       });
