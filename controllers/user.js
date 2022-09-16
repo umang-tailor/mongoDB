@@ -51,7 +51,7 @@ const registerUser = async (req, res) => {
   
       return;
     } catch (error) {
-      console.log("error :>> ", error);
+      
       res.status(500).json({
         status: constants.server_error_code,
         message:

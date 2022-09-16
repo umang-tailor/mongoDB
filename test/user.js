@@ -4,6 +4,7 @@ let user = require('../models/user');
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let server = require('../app');
+const { expect } = require("chai");
 let should = chai.should();
 
 
@@ -30,12 +31,12 @@ describe('user', () => {
  /*
   * Test the /POST route
   */
- describe('/v1/create-user', () => {
+ describe('create-user', () => {
     it('create user', (done) => {
         let user = {
             first_name: "Honey",
             last_name: "singh",
-            email: "honey@gmail.com",
+            email: "hone@gmail.com",
             password:"1234"
         }
       chai.request(server)
@@ -43,9 +44,53 @@ describe('user', () => {
           .send(user)
           .end((err, res) => {
                 res.should.have.status(200);
-                
             done();
           });
     });
-
+    it('Please provide all Data',(done)=>{
+        let user={
+            first_name:"",
+            last_name:"",
+            email: "",
+            password:""
+        }
+        chai.request(server)
+          .post('/v1/create-user')
+          .send(user)
+          .end((err, res) => {
+                res.should.have.status(500);
+            done();
+          });
+    });
+    it('email format check',(done)=>{
+        let user={
+            first_name: "Honey",
+            last_name: "singh",
+            email: "hone@gmail.com",
+            password:"1234"
+        }
+        chai.request(server)
+          .post('/v1/create-user')
+          .send(user)
+          .end((err, res) => {
+                res.should.have.status(500);
+            done();
+          });
+    });
+    it('Invalid Email',(done)=>{
+        let user={
+            first_name: "Honey",
+            last_name: "singh",
+            email: "honegmailcom",
+            password:"1234"
+        }
+        chai.request(server)
+          .post('/v1/create-user')
+          .send(user)
+          .end((err, res) => {
+                res.should.have.status(500);
+            done();
+          });
+    })
 });
+
