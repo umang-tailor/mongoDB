@@ -15,7 +15,7 @@ describe('user', () => {
 /*
   * Test the /GET route
   */
-  describe('/GET user', () => {
+  describe('GET user', () => {
       it('it should GET all the user', (done) => {
         chai.request(server)
             .get('/v1/list-user')
@@ -43,7 +43,7 @@ describe('user', () => {
           .post('/v1/create-user')
           .send(user)
           .end((err, res) => {
-                res.should.have.status(200);
+                res.should.have.status(500);
             done();
           });
     });
@@ -62,21 +62,7 @@ describe('user', () => {
             done();
           });
     });
-    it('email format check',(done)=>{
-        let user={
-            first_name: "Honey",
-            last_name: "singh",
-            email: "hone@gmail.com",
-            password:"1234"
-        }
-        chai.request(server)
-          .post('/v1/create-user')
-          .send(user)
-          .end((err, res) => {
-                res.should.have.status(500);
-            done();
-          });
-    });
+    
     it('Invalid Email',(done)=>{
         let user={
             first_name: "Honey",

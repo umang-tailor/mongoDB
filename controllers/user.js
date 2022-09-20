@@ -7,9 +7,9 @@ const bcrypt = require("bcrypt");
 
 
 const registerUser = async (req, res) => {
-    console.log("registerUser function start");
+    // console.log("registerUser function start");
     try {
-      console.log(req.body);
+      // console.log(req.body);
       if (
         !req.body.first_name ||
         !req.body.email ||
@@ -24,7 +24,7 @@ const registerUser = async (req, res) => {
           email: req.body.email,
         
       });
-  console.log(existUserData)
+  // console.log(existUserData)
       if (existUserData) {
         throw "User with this email is already registered with us";
       }
@@ -160,7 +160,7 @@ const changePassword = async (req, res) => {
       return;
     }
   };
-  const resetPassword = async (req, res) => {
+const resetPassword = async (req, res) => {
     try {
       let userPass = await users.findOne({
         
@@ -199,7 +199,7 @@ const changePassword = async (req, res) => {
       return;
     }
   };
-  const updatePassword = async (req, res) => {
+const updatePassword = async (req, res) => {
     try {
       let secret = token();
   
@@ -246,7 +246,7 @@ const changePassword = async (req, res) => {
       return;
     }
   };
-  const listUsers = async (req, res) => {
+const listUsers = async (req, res) => {
     console.log("start");
     try {
       let result = await users.find({
@@ -279,7 +279,6 @@ const changePassword = async (req, res) => {
   module.exports={
     registerUser,
     login,
-    changePassword,
     changePassword,
     updatePassword,
     resetPassword,
